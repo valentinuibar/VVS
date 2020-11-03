@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convertor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+
+
+        <div class="col l5 m6 s12 ">
+
+            <div class="card-panel z-depth-4">
+
+                <form>
+
+                    <label for="colFormLabelSm" id="label1">Amount</label>
+                    <input type="number" id="amount" placeholder="Enter Amount">
+                    <br> <br>
+                    <label for="colFormLabelSm">Currency</label>
+                    <select id="rate" name="rate">
+                        <option disabled value="select" selected>select currency</option>
+                        <option value="4.1781">USD</option>
+                        <option value="5.3964">GBP</option>
+                        <option value="4.8643">EUR</option>
+                    </select>
+                    <br> <br>
+                    <label for="colFormLabelSm">Amount converted in RON</label>
+                    <input type="text" placeholder="Amount In RON" id="conv">
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+
+    document.getElementById("amount").addEventListener("input",calculator);
+    document.getElementById("rate").addEventListener("change",ChangeCurrency);
+
+    function calculator(){
+         let amount = document.getElementById("amount").value;
+         let rate = document.getElementById("rate").value;
+
+      if(rate == "select"){
+             document.getElementById("conv").setAttribute("placeholder","please select currency");
+      }else{
+         let compute = amount * rate;
+
+        document.getElementById("conv").value = compute;
+      }
+    }
+
+    function ChangeCurrency(){
+      let rate = document.getElementById("rate").value;
+      let amount = document.getElementById("amount").value;
+
+
+      let compute = rate * amount;
+        document.getElementById("conv").value = compute.toFixed(2);
+
+
+    }
+
+
+
+    let menu = document.querySelectorAll('select');
+     M.FormSelect.init(menu,{});
+
+  });
+  </script>
+
+</body>
+</html>
